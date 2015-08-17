@@ -1,15 +1,18 @@
 <div ui-view>
     <h1>Profile</h1>
 
-
+    <my-profile-nav></my-profile-nav>
     <ul>
-        <li><a ui-sref="profile.timeline">Time line</a></li>
-        <li><a ui-sref="profile.handhistory">Hand history</a></li>
-        <li><a ui-sref="profile.notifications">Notifications</a></li>
-        <li><a ui-sref="profile.followers">Followers</a></li>
-        <li><a ui-sref="profile.following">Following</a></li>
+        <li><a ui-sref="authenticated.profile.timeline">Time line</a></li>
+        <li><a ui-sref="authenticated.profile.handhistory">Hand history</a></li>
+        <li><a ui-sref="authenticated.profile.notifications">Notifications</a></li>
+        <li><a ui-sref="authenticated.profile.followers">Followers</a></li>
+        <li><a ui-sref="authenticated.profile.following">Following</a></li>
     </ul>
 
-    <div ui-view="profile-main"></div>
+    <div class="col col-md-8" ui-view="profile-main"></div>
+
+    <div class="col col-md-4" ui-view="right-col">
+        <p>WEll</p>
+    </div>
 </div>
-<div ui-view="right-col"></div>

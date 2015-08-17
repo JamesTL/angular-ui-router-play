@@ -7,96 +7,121 @@
 
     /** @ngInject */
     function routeConfig($stateProvider, $urlRouterProvider) {
+        // var test =$rootScope.currentUser;
+        var anon = {
+            name: 'anon',
+            abstract: true,
+            template: '<div ui-view></div>'
+        };
 
         var home = {
-            name: 'home',
+            name: 'anon.home',
             url: '/',
-            templateUrl: 'app/main/main.html',
+            views: {
+                '': {templateUrl: 'app/main/main.html'}
+            },
             controller: 'MainController',
             controllerAs: 'main'
         };
 //ABOUT
         var about = {
-            name: 'about',
+            name: 'anon.about',
             url: '/about',
             views: {
                 '': {templateUrl: 'app/about/about.html'},
-                'right-col@about': {template: "right col about"}
+                'right-col@anon.about': {template: "right col about"}
             }
         };
-//PROFILE
-        var profile = {
+        //Authentticated
+        var authenticated = {
 
-            name: 'profile',
-            url: '/profile',
+            name: 'authenticated',
+            abstract: true,
+            template: '<div ui-view></div>',
             data: {
 
                 requireLogIn: true
-            },
+            }
+        }
+//PROFILE
+        var profile = {
+
+            name: 'authenticated.profile',
+            url: '/profile',
             views: {
                 '': {templateUrl: 'app/profile/profile.html'},
-                'right-col@profile': {
-                    template: 'right col profile'
-                }
+                'right-col@authenticated.profile': {
+                    template: '<p>right col profile </p><div ui-view="320-top-profile"></div>'
+                },
+                '320-top-profile@authenticated.profile': {templateUrl: 'assets/templates/ad-zones/profile/zone-right-col-top-280.html'}
+
             }
         };
         var profiletimeline = {
-            name: 'profile.timeline',
+            name: 'authenticated.profile.timeline',
             url: '/timeline',
 
             views: {
 
-                'profile-main@profile': {
+                'profile-main@authenticated.profile': {
                     template: 'Timeline content here'
-                }
+                },
+                '320-top-profile@authenticated.profile': {template: "Timeline - banner ad code here"}
             }
 
         };
         var profileHandhistory = {
-            name: 'profile.handhistory',
+            name: 'authenticated.profile.handhistory',
             url: '/handhistory',
             views: {
 
-                'profile-main@profile': {
+                'profile-main@authenticated.profile': {
                     template: 'Handhistory feed content here'
-                }
+                },
+            '320-top-profile@authenticated.profile': {template: "Hand History - banner ad code here"}
             }
         };
         var profileNotifications = {
-            name: 'profile.notifications',
+            name: 'authenticated.profile.notifications',
             url: '/notifications',
             views: {
 
-                'profile-main@profile': {
+                'profile-main@authenticated.profile': {
                     template: 'Notifications feed content here'
-                }
+                },
+                '320-top-profile@authenticated.profile': {template: "Notifications - banner ad code here"}
             }
         };
         var profileFollowing = {
-            name: 'profile.following',
+            name: 'authenticated.profile.following',
             url: '/following',
             views: {
 
-                'profile-main@profile': {
+                'profile-main@authenticated.profile': {
                     template: 'Following feed content here'
-                }
+                },
+                '320-top-profile@authenticated.profile': {template: "Following - banner ad code here"}
             }
         };
         var profileFollowers = {
-            name: 'profile.followers',
+            name: 'authenticated.profile.followers',
             url: '/followers',
             views: {
 
-                'profile-main@profile': {
+                'profile-main@authenticated.profile': {
                     template: 'Followers feed content here'
-                }
+                },
+                '320-top-profile@authenticated.profile': {template: "Followers - banner ad code here"}
             }
 
         };
 
         $stateProvider
+            .state(anon)
             .state(home)
-            .state(about)
+            .state(about);
+        $stateProvider
+            .state(authenticated)
             .state(profile)
             .state(profiletimeline)
             .state(profileNotifications)

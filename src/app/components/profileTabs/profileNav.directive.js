@@ -9,15 +9,25 @@
     function  myProfileNav() {
         var directive = {
             restrict: 'E',
-            replace:true,
+            replace: true,
             templateUrl: 'app/components/profileTabs/profileTabs.html',
             scope: {},
-            controller:ProfileController,
+            controller: ProfileController,
             controllerAs: 'vm',
             bindToController: true
         };
 
         return directive;
+
+
     };
+
+    /** @ngInject */
+    function ProfileController(moment) {
+        var vm = this;
+
+        // "vm.creation" is avaible by directive option "bindToController: true"
+        vm.relativeDate = moment(vm.creationDate).fromNow();
+    }
 
 })()

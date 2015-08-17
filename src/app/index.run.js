@@ -8,7 +8,7 @@
     /** @ngInject */
     function runBlock($log,$rootScope) {
 
-        $rootScope.currentUser;
+        $rootScope.currentUser='jl';
 
         $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
             console.log('data', toState);
